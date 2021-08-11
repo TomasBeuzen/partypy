@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "partypy"
+version = "0.1.0"
+description = "Simulate attendance at your party!"
+authors = ["Tomas Beuzen"]
+license = "MIT"
+readme = "README.md"
+documentation = "https://partypy.readthedocs.io/en/latest/"
+homepage = "https://github.com/TomasBeuzen/partypy"
+repository = "https://github.com/TomasBeuzen/partypy"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
