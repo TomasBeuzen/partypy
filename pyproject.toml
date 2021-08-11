@@ -22,6 +22,7 @@ myst-nb = "^0.12.3"
 sphinx-autoapi = "^1.8.3"
 sphinx-rtd-theme = "^0.5.2"
 sphinx-copybutton = "^0.4.0"
+pytest-cov = "^2.12.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
