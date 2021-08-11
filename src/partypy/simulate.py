@@ -34,7 +34,10 @@ def simulate_party(p, n_simulations=500):
     """
     if n_simulations < 1:
         raise ValueError("n_simulations must be greater than 0.")
-    result = np.random.binomial(n=1, p=p, size=(n_simulations, len(p))).sum(axis=1)
+    result = np.random.binomial(n=1,
+                                p=p,
+                                size=(n_simulations, len(p))
+                                ).sum(axis=1)
     return pd.DataFrame(
         {"Total guests": result, "Simulation": range(1, n_simulations + 1)}
     ).set_index("Simulation")
