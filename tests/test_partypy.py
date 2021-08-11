@@ -1,5 +1,6 @@
 from partypy.simulate import simulate_party
 from partypy.plotting import plot_simulation
+from partypy.datasets import load_party
 import pandas as pd
 import altair as alt
 from pytest import raises, fixture
@@ -27,3 +28,9 @@ def test_plot_simulation(test_data):
     assert isinstance(plot, alt.Chart)
     assert plot.mark == "bar"
     assert plot.data["Total guests"].sum() == 0
+
+
+def test_load_party():
+    df = load_party()
+    assert isinstance(df, pd.DataFrame)
+    assert len(df) == 100
