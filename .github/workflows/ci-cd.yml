@@ -1,0 +1,46 @@
+name: ci-cd
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    # Step 1. Set up operating system
+    runs-on: ubuntu-latest
+    steps:
+    # Step 2. Set up Python environment
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    # Step 3. Check-out repository so we can access its contents
+    - name: Check-out repository
+      uses: actions/checkout@v2
+    # Step 4. Install poetry
+    - name: Install poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: 1.2.0a2
+    # Step 5. Install our partypy package
+    - name: Install package
+      run: poetry install
+    # Step 6. Check Python code style
+    - name: Check style
+      run: poetry run flake8 .
+    # Step 7. Run unit tests for partypy
+    - name: Test with pytest
+      run: poetry run pytest --cov=./ --cov-report=xml
+    # Step 8. Record code coverage
+    - name: Upload coverage to Codecov  
+      uses: codecov/codecov-action@v2
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: true
+    # Step 9. Build partypy documentation
+    - name: Build documentation
+      run: poetry run make html -C docs
