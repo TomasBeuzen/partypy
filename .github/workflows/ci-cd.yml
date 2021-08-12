@@ -74,6 +74,8 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           semantic-release publish -v DEBUG
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
     # Step 6. Build package distributions
     - name: Build source and wheel distributions
       run: poetry build
