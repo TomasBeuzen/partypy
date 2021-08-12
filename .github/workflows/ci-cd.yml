@@ -73,7 +73,7 @@ jobs:
           pip install python-semantic-release --quiet
           git config user.name github-actions
           git config user.email github-actions@github.com
-          semantic-release publish
+          semantic-release publish -v DEBUG
     # Step 6. Build package distributions
     - name: Build source and wheel distributions
       run: poetry build
@@ -91,7 +91,6 @@ jobs:
           --index-url https://test.pypi.org/simple/ \
           --extra-index-url https://pypi.org/simple \
           partypy
-          pip show partypy | grep Version
     # Step 9. Publish to PyPI
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
