@@ -65,7 +65,7 @@ def plot_simulation(results, C=None):
                 pd.DataFrame({"quantiles": [lower_q, upper_q]})
             )
             .mark_rule(color="red", strokeWidth=3)
-            .encode(x="quantiles")
+            .encode(x="quantiles:Q")
         )
         return histogram + quantiles
     else:
