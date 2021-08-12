@@ -30,6 +30,16 @@ def test_plot_simulation(test_data):
     assert plot.data["Total guests"].sum() == 0
 
 
+def test_plot_simulation_ci(test_data):
+    results = simulate_party(test_data["p_0"])
+    plot = plot_simulation(results, C=0.95)
+    assert isinstance(plot, alt.LayerChart)
+    assert plot.layer[0].mark == "bar"
+    assert plot.layer[0].data["Total guests"].sum() == 0
+    with raises(ValueError):
+        plot_simulation(results, C=0)
+
+
 def test_load_party():
     df = load_party()
     assert isinstance(df, pd.DataFrame)
