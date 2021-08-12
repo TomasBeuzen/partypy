@@ -86,6 +86,7 @@ jobs:
         user: __token__
         password: ${{ secrets.TEST_PYPI_API_TOKEN }}
         repository_url: https://test.pypi.org/legacy/
+        skip_existing: true
     # Step 8. Test install from TestPyPI
     - name: Test install from TestPyPI
       run: |
@@ -99,3 +100,4 @@ jobs:
       with:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
+        skip_existing: true
