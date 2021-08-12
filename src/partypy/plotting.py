@@ -1,13 +1,34 @@
+import pandas as pd
 import altair as alt
 
 
-def plot_simulation(results):
+def _quantiles(results, C=0.95):
+    """Calculate quantiles of simulation results.
+
+    Parameters
+    ----------
+    results : pandas.DataFrame
+        DataFrame of simulation results from `partpy.simulate_party()`
+    C : float, optional
+        Confidence level, between 0 and 1. By default, 0.95.
+    """
+    if not 0 < C < 1:
+        raise ValueError("ci must be 0 < ci < 1.")
+    lower_q = results.quantile(0.5 - C / 2).to_numpy()
+    upper_q = results.quantile(0.5 + C / 2).to_numpy()
+    return lower_q, upper_q
+
+
+def plot_simulation(results, C=None):
     """Plot a histogram of simulation results.
 
     Parameters
     ----------
     results : pandas.DataFrame
         DataFrame of simulation results from `partpy.simulate_party()`
+    C : float, optional
+        Confidence level, between 0 and 1. If provided, confidence intervals
+        will be displayed on chart. By default, 0.95.
 
     Returns
     -------
@@ -37,4 +58,15 @@ def plot_simulation(results):
         )
     )
 
-    return histogram
+    if C is not None:
+        lower_q, upper_q = _quantiles(results, C)
+        quantiles = (
+            alt.Chart(
+                pd.DataFrame({"quantiles": [lower_q, upper_q]})
+            )
+            .mark_rule(color="red", strokeWidth=3)
+            .encode(x="quantiles")
+        )
+        return histogram + quantiles
+    else:
+        return histogram
