@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "partypy"
-version = "0.3.0"
+version = "0.4.0"
 description = "Simulate attendance at your party!"
 authors = ["Tomas Beuzen"]
 license = "MIT"

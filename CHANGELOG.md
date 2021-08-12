@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2021-08-12)
+### Feature
+* Add confidence interval option to plot_simulation ([`b39ae60`](https://github.com/TomasBeuzen/partypy/commit/b39ae6009263d1b3347eb7c42fb0c06430a8606d))
+* Add confidence interval option to plot_simulation ([`c71f5c5`](https://github.com/TomasBeuzen/partypy/commit/c71f5c5c1df2bff29b13d21e5d9d83495135a623))
+
+### Documentation
+* Add usage example of confidence interval option ([`44d1d4f`](https://github.com/TomasBeuzen/partypy/commit/44d1d4fddb0929589baf57e127a1805b002a5187))
+
 ## v0.3.0 (2021-08-12)
 ### Feature
 * Add CI/CD workflow ([`5e24e2e`](https://github.com/TomasBeuzen/partypy/commit/5e24e2e19f8ece53c8e1226ca532502292b8b50c))
